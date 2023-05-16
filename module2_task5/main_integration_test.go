@@ -26,22 +26,34 @@ func Test_server(t *testing.T) {
       body:         "Hello Holberton!",
     },
     {
-      name:         "Hello no name",
+      name:         "Hello without querystring",
       URI:          "/hello",
       responseCode: 200,
       body:         "Hello there!",
     },
     {
-      name:         "Hello empty name",
+      name:         "Hello with empty name",
       URI:          "/hello?name=",
       responseCode: 400,
       body:         "",
     },
     {
-      name:	    "Health Check Page",
-      URI:	    "/health",
+      name:         "Hello with querystring with space no urlencode",
+      URI:          "/hello?name=Rosalind Franklin",
+      responseCode: 400,
+      body:         "400 Bad Request",
+    },
+    {
+      name:         "Hello with querystring with space with urlencode",
+      URI:          "/hello?name=Rosalind%20Franklin",
       responseCode: 200,
-      body:	    "ALIVE",
+      body:         "Hello Rosalind Franklin!",
+    },
+    {
+      name:         "Health",
+      URI:          "/health",
+      responseCode: 200,
+      body:         "ALIVE",
     },
   }
 
